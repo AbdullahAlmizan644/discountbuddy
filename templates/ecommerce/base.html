@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <title>{% block title %} {% endblock %}-DiscountBuddy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="{% static 'ecommerce/fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'ecommerce/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'ecommerce/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
+
+    {% endblock %}
+
+</head>
+
+
+
+<body>
+
+    <div class="site-wrap">
+        <header class="site-navbar" role="banner">
+            <div class="site-navbar-top">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+                            <form action="" class="site-block-top-search">
+                                <span class="icon icon-search2"></span>
+                                <input type="text" class="form-control border-0" placeholder="Search">
+                            </form>
+                        </div>
+
+                        <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+                            <div class="site-logo">
+                                <a href="{% url 'index' %}" class="js-logo-clone">Discount Buddy</a>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+                            <div class="site-top-icons">
+                                <ul>
+                                    <li><a href="#"><span class="icon icon-person"></span></a></li>
+                                    <li><a href="#"><span class="icon icon-trash"></span></a></li>
+                                    <li>
+                                        <a href="{% url 'cart'%}" class="site-cart">
+                                            <span class="icon icon-shopping_cart"></span>
+                                            <span class="count">2</span>
+                                        </a>
+                                    </li>
+                                    <li class="d-inline-block d-md-none ml-md-0"><a href="#"
+                                            class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <nav class="site-navigation text-right text-md-center" role="navigation">
+                <div class="container">
+                    <ul class="site-menu js-clone-nav d-none d-md-block">
+                        <li><a href={% url "index" %}>Home</a></li>
+                        <li class="has-children">
+                            <a href="{% url 'category' %}">Category</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Category One</a></li>
+                                <li><a href="#">Category Two</a></li>
+                                <li><a href="#">Category Three</a></li>
+                            </ul>
+                        </li>
+                        <li><a href={% url "about" %}>About</a></li>
+                        <li><a href={% url "contact" %}>Contact</a></li>
+                        <li><a href="admin/">Dashboard</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        {% block body %} {% endblock %}
+
+
+
+        <footer class="site-footer border-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="footer-heading mb-4">Navigations</h3>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="block-5 mb-5">
+                            <h3 class="footer-heading mb-4">Contact Info</h3>
+                            <ul class="list-unstyled">
+                                <li class="address">2 no gate,Chattogram</li>
+                                <li class="phone"><a href="#">01857-609102 / 01826145244 </li>
+                                <li class="email">discountbuddy006@gmail.com</li>
+                            </ul>
+                        </div>
+
+                        <div class="block-7">
+                            <form action="#" method="post">
+                                <div class="form-group">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5 mt-5 text-center">
+                    <div class="col-md-12">
+                        <p>
+                            Copyright &copy; All rights reserved by DiscountBuddy</a>
+                          
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{% static 'ecommerce/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'ecommerce/js/jquery-ui.js' %}"></script>
+    <script src="{% static 'ecommerce/js/popper.min.js' %}"></script>
+    <script src="{% static 'ecommerce/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'ecommerce/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'ecommerce/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'ecommerce/js/aos.js' %}"></script>
+
+    <script src="{% static 'ecommerce/js/main.js' %}"></script>
+
+</body>
+
+</html>
