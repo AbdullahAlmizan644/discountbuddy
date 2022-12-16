@@ -1,0 +1,9 @@
+# Query: icon-2
+# ContextLines: 1
+
+1 result - 1 file
+
+static/land/css/style.css:
+  491      margin: 0 auto;
+  492:     background-image: url(../images/icon-02.png);
+  493      height: 60px;

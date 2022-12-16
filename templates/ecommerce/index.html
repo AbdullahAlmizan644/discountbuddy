@@ -1,281 +1,266 @@
 {% extends "ecommerce/base.html" %}
 {% block title %} Home {% endblock %}
-
-{% block body %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/assets/owl.carousel.min.css" />
+<!-- bootstrap css -->
+<link rel="stylesheet" type="text/css" href="{% static 'land/css/bootstrap.min.css' %}">
+<!-- style css -->
+<link rel="stylesheet" type="text/css" href="{% static 'land/css/style.css'  %}">
+<!-- Responsive-->
+<link rel="stylesheet" href="{% static 'land/css/responsive.css' %}">
+<!-- fevicon -->
+<link rel="icon" href="{% static 'land/images/fevicon.png' %}" type="image/gif" />
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="{% static 'land/css/jquery.mCustomScrollbar.min.css' %}">
+<!-- Tweaks for older IEs-->
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<!-- owl stylesheets -->
+<link rel="stylesheet" href="{% static 'land/css/owl.carousel.min.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'land/css/owl.theme.default.min.css' %}"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+  media="screen">
 
-    <!-- <div class="bg-light py-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Shop</strong></div>
+<style>
+  .cat-1 img {
+    width: 50px;
+    height: 60px;
+    margin: 0 auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    display: inline-block;
+  }
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<!--banner section start -->
+<div class="banner_section layout_padding" style="background-color: blue;">
+  <div id="my_slider" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="taital_main">
+                <h4 class="banner_taital"><span class="font_size_90">All</span> Discount product in one place</h4>
+                <p class="banner_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, atque?</p>
+                <div class="book_bt"><a href="#">Shop Now</a></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div><img src="{% static 'land/images/img-1.png' %} " class="image_1"></div>
+            </div>
+          </div>
+          <div class="button_main"><button class="all_text">All</button><input type="text" class="Enter_text"
+              placeholder="Enter keywords" name=""><button class="search_text">Search</button></div>
         </div>
       </div>
-    </div> -->
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="taital_main">
+                <h4 class="banner_taital"><span class="font_size_90">50%</span> Discount Online Shop</h4>
+                <p class="banner_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, atque?</p>
+                <div class="book_bt"><a href="#">Shop Now</a></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div><img src="{% static 'land/images/img-1.png'%} " class="image_1"></div>
+            </div>
+          </div>
+          <div class="button_main"><button class="all_text">All</button><input type="text" class="Enter_text"
+              placeholder="Enter keywords" name=""><button class="search_text">Search</button></div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="taital_main">
+                <h4 class="banner_taital"><span class="font_size_90">50%</span> Discount Online Shop</h4>
+                <p class="banner_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, atque?</p>
+                <div class="book_bt"><a href="#">Shop Now</a></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div><img src="{% static 'land/images/img-1.png' %}" class="image_1"></div>
+            </div>
+          </div>
+          <div class="button_main"><button class="all_text">All</button><input type="text" class="Enter_text"
+              placeholder="Enter keywords" name=""><button class="search_text">Search</button></div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+      <i class=""><img src="{% static 'land/images/left-icon.png'%}"></i>
+    </a>
+    <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+      <i class=""><img src="{% static 'land/images/right-icon.png'%} "></i>
+    </a>
+  </div>
+</div>
+<!--banner section end -->
 
-    <div class="site-section block-8">
-      <div class="container">
-        <div class="row justify-content-center  mb-5">
-          <div class="col-md-7 site-section-heading text-center pt-4">
-            <h2>Big Sale!</h2>
+<!--category section start -->
+<div class="container">
+  <div class="category_section">
+    <div class="row">
+      <div class="col-lg-2 col-sm-12">
+        <h1 class="category_text">Category</h1>
+      </div>
+      <div class="col-lg-10 col-sm-12 main">
+        <div class="col">
+          <div class="box_main">
+            <div class="cat-1">
+              <img src="{% static 'land/images/icon-2.png' %}" alt="">
+            </div>
+            <h4 class="fashion_text active">Cloth</h4>
           </div>
         </div>
-        <div class="row align-items-center">
-          <div class="col-md-12 col-lg-7 mb-5">
-            <a href="#"><img src="{% static 'ecommerce/images/blog_1.jpg' %}" alt="Image placeholder" class="img-fluid rounded"></a>
+
+        <div class="col">
+          <div class="box_main">
+            <div class="cat-1">
+              <img src="{% static 'land/images/i4.png' %}" alt="">
+            </div>
+            <h4 class="fashion_text active">footware</h4>
           </div>
-          <div class="col-md-12 col-lg-5 text-center pl-md-5">
-            <h2><a href="#">50% less in all items</a></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam iste dolor accusantium facere corporis ipsum animi deleniti fugiat. Ex, veniam?</p>
-            <p><a href="#shop" class="btn btn-primary btn-sm">Shop Now</a></p>
+        </div>
+
+
+        <div class="col">
+          <div class="box_main">
+            <div class="cat-1">
+              <img src="{% static 'land/images/icon-5.png' %}" alt="">
+            </div>
+            <h4 class="fashion_text active">sweater</h4>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- category section end -->
+
+<div class="site-section block-8">
+  <div class="container">
+    <div class="row justify-content-center  mb-5">
+      <div class="col-md-7 site-section-heading text-center pt-4">
+        <h2>Big Sale!</h2>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-md-12 col-lg-7 mb-5">
+        <a href="#"><img src="{% static 'ecommerce/images/blog_1.jpg'%} " alt="Image placeholder"
+            class="img-fluid rounded"></a>
+      </div>
+      <div class="col-md-12 col-lg-5 text-center pl-md-5">
+        <h2><a href="#">50% less in all items</a></h2>
+        <!-- <p class="post-meta mb-4">By <a href="#">Carl Smith</a> <span class="block-8-sep">&bullet;</span> September 3, 2018</p> -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam iste dolor accusantium facere corporis
+          ipsum animi deleniti fugiat. Ex, veniam?</p>
+        <p><a href="#" class="btn btn-primary btn-sm">Shop Now</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-section block-3 site-blocks-2 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-7 site-section-heading text-center pt-4">
+        <h2>Top Selling Products</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="nonloop-block-3 owl-carousel">
+          <div class="item">
+            <div class="block-4 text-center">
+              <figure class="block-4-image">
+                <img src="{% static 'ecommerce/images/cloth_1.jpg'%} " alt="Image placeholder" class="img-fluid">
+              </figure>
+              <div class="block-4-text p-4">
+                <h3><a href="shop-single.html">Corater</a></h3>
+                <p class="mb-0">Finding perfect products</p>
+                <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
+                <p class="text-primary font-weight-bold">Discount 30%</p>
+                <p class="text-primary font-weight-bold">৳50.00</p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="block-4 text-center">
+              <figure class="block-4-image">
+                <img src="{% static 'ecommerce/images/shoe_1.jpg'%} " alt="Image placeholder" class="img-fluid">
+              </figure>
+              <div class="block-4-text p-4">
+                <h3><a href="shop-single.html">Corater</a></h3>
+                <p class="mb-0">Finding perfect products</p>
+                <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
+                <p class="text-primary font-weight-bold">Discount 30%</p>
+                <p class="text-primary font-weight-bold">৳50.00</p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="block-4 text-center">
+              <figure class="block-4-image">
+                <img src="{% static 'ecommerce/images/cloth_3.jpg'%} " alt="Image placeholder" class="img-fluid">
+              </figure>
+              <div class="block-4-text p-4">
+                <h3><a href="shop-single.html">Corater</a></h3>
+                <p class="mb-0">Finding perfect products</p>
+                <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
+                <p class="text-primary font-weight-bold">Discount 30%</p>
+                <p class="text-primary font-weight-bold">৳50.00</p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="block-4 text-center">
+              <figure class="block-4-image">
+                <img src="{% static 'ecommerce/images/cloth_2.jpg'%} " alt="Image placeholder" class="img-fluid">
+              </figure>
+              <div class="block-4-text p-4">
+                <h3><a href="shop-single.html">Corater</a></h3>
+                <p class="mb-0">Finding perfect products</p>
+                <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
+                <p class="text-primary font-weight-bold">Discount 30%</p>
+                <p class="text-primary font-weight-bold">৳50.00</p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="block-4 text-center">
+              <figure class="block-4-image">
+                <img src="{% static 'ecommerce/images/cloth_1.jpg'%} " alt="Image placeholder" class="img-fluid">
+              </figure>
+              <div class="block-4-text p-4">
+                <h3><a href="shop-single.html">Corater</a></h3>
+                <p class="mb-0">Finding perfect products</p>
+                <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
+                <p class="text-primary font-weight-bold">Discount 30%</p>
+                <p class="text-primary font-weight-bold">৳50.00</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="site-section">
-      <div class="container">
-
-        <div class="row mb-5">
-          <div class="col-md-9 order-2">
-
-            <div class="row">
-              <div class="col-md-12 mb-5">
-                <div class="float-md-left mb-4">
-                  <h2 class="text-black h5">Shop</h2>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-5" id="shop">
-
-              <div class="col-sm-6 col-lg-4 mb-4"  data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/cloth_1.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="{% url 'product_details' %}">Tank Top</a></h3>
-                    <p class="mb-0">Finding perfect t-shirt</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/shoe_1.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Corater</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/cloth_2.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Polo Shirt</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/cloth_3.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">T-Shirt Mockup</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/shoe_1.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Corater</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/cloth_1.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Tank Top</a></h3>
-                    <p class="mb-0">Finding perfect t-shirt</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/shoe_1.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Corater</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/cloth_2.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Polo Shirt</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/cloth_3.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">T-Shirt Mockup</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/shoe_1.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Corater</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/cloth_1.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Tank Top</a></h3>
-                    <p class="mb-0">Finding perfect t-shirt</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
-
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{% static 'ecommerce/images/cloth_2.jpg' %}"
-                        alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Polo Shirt</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold"><s>৳50.00</s></p>
-                    <p class="text-primary font-weight-bold">Discount 30%</p>
-                    <p class="text-primary font-weight-bold">৳50.00</p>
-                  </div>
-                  <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-                </div>
-              </div>
+  </div>
+</div>
 
 
-            </div>
-            <div class="row" data-aos="fade-up">
-              <div class="col-md-12 text-center">
-                <div class="site-block-27">
-                  <ul>
-                    <li><a href="#">&lt;</a></li>
-                    <li class="active"><span>1</span></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&gt;</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-3 order-1 mb-5 mb-md-0">
-            <div class="border p-4 rounded mb-4">
-              <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
-              <ul class="list-unstyled mb-0">
-                <li class="mb-1"><a href="#" class="d-flex"><span>Cloths</span> <span
-                      class="text-black ml-auto">(0)</span></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
-      </div>
-    </div>
-
-  
-  {% endblock %}
+{% endblock %}
