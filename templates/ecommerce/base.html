@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    
+
     <title>{% block title %} {% endblock %}-DiscountBuddy</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,9 +20,10 @@
     <link rel="stylesheet" href="{% static 'ecommerce/css/aos.css' %}">
 
     <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
+   
 
-    {% block head %} 
-    
+    {% block head %}
+
     {% endblock %}
 
 </head>
@@ -75,21 +76,37 @@
                 <div class="container">
                     <ul class="site-menu js-clone-nav d-none d-md-block">
                         <li><a href={% url "index" %}>Home</a></li>
+                        <li><a href={% url "shop" %}>Shop</a></li>
                         <li class="has-children">
-                            <a href="{% url 'category' %}">Category</a>
+                            <a href="#">Category</a>
                             <ul class="dropdown">
-                                <li><a href="#">Category One</a></li>
-                                <li><a href="#">Category Two</a></li>
-                                <li><a href="#">Category Three</a></li>
+                            {% for category in categories %}
+                              <li><a href="{% url 'category' category.id %}">{{category}}</a></li>
+                            {% endfor %}
+                              <!-- <li><a href="#">Menu Two</a></li>
+                              <li><a href="#">Menu Three</a></li> -->
                             </ul>
-                        </li>
+                          </li>
                         <li><a href={% url "about" %}>About</a></li>
                         <li><a href={% url "contact" %}>Contact</a></li>
                         <li><a href="admin/">Dashboard</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a> Wellcome {{ request.user }}</a></li>
+                        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>
         </header>
+
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong> 
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+        </div>
+        {% endfor %}
 
         {% block body %} {% endblock %}
 
@@ -137,7 +154,7 @@
                     <div class="col-md-12">
                         <p>
                             Copyright &copy; All rights reserved by DiscountBuddy</a>
-                          
+
                         </p>
                     </div>
 
@@ -155,7 +172,7 @@
     <script src="{% static 'ecommerce/js/aos.js' %}"></script>
 
     <script src="{% static 'ecommerce/js/main.js' %}"></script>
-
+    <!-- JavaScript Bundle with Popper -->
 </body>
 
 </html>

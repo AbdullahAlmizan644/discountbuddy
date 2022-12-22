@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 mb-0"><a href="index.html">Shop Category</a> <span class="mx-2 mb-0">/</span> <strong
-          class="text-black">{{category.category}}</strong></div>
+          class="text-black">{{brand_details.brand}}</strong></div>
     </div>
   </div>
 </div>
@@ -23,9 +23,9 @@
         <div class="row">
           <div class="col-md-12 mb-5">
             <div class="float-md-left mb-4">
-              <h2 class="text-black h5">{{category.category}}</h2>
+              <h2 class="text-black h5">{{brand_details.brand}}</h2>
             </div>
-            <div class="d-flex">
+            <!-- <div class="d-flex">
               <div class="dropdown mr-1 ml-md-auto">
                 <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,16 +33,16 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                   {% for b in brands %}
-                  <a class="dropdown-item" href="{% url 'brand' b.id %}">{{b.brand}}</a>
+                  <a class="dropdown-item" href="#">{{b.brand}}</a>
                   {% endfor %}
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="row mb-5" id="shop">
 
-          {% for product in category_product %}
+          {% for product in brand_product %}
           <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
             <div class="block-4 text-center border">
               <figure class="block-4-image">

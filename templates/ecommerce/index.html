@@ -116,34 +116,18 @@
         <h1 class="category_text">Category</h1>
       </div>
       <div class="col-lg-10 col-sm-12 main">
+
+        {% for category in categories%}
         <div class="col">
           <div class="box_main">
             <div class="cat-1">
-              <img src="{% static 'land/images/icon-2.png' %}" alt="">
+              <a href={% url 'category' category.id %}><img src="{{ category.category_image }}" alt=""></a>
             </div>
-            <h4 class="fashion_text active">Cloth</h4>
+            <a href={% url 'category' category.id %}><h4 class="fashion_text active">{{category.category}}</h4></a>
+            
           </div>
         </div>
-
-        <div class="col">
-          <div class="box_main">
-            <div class="cat-1">
-              <img src="{% static 'land/images/i4.png' %}" alt="">
-            </div>
-            <h4 class="fashion_text active">footware</h4>
-          </div>
-        </div>
-
-
-        <div class="col">
-          <div class="box_main">
-            <div class="cat-1">
-              <img src="{% static 'land/images/icon-5.png' %}" alt="">
-            </div>
-            <h4 class="fashion_text active">sweater</h4>
-          </div>
-        </div>
-
+        {% endfor %}
 
       </div>
     </div>
