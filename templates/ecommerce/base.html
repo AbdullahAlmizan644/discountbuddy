@@ -89,7 +89,7 @@
                           </li>
                         <li><a href={% url "about" %}>About</a></li>
                         <li><a href={% url "contact" %}>Contact</a></li>
-                        <li><a href="admin/">Dashboard</a></li>
+                        <li><a href="{% url 'admin:index' %}">Dashboard</a></li>
                         {% if user.is_authenticated %}
                         <li><a> Wellcome {{ request.user }}</a></li>
                         <li><a href="{% url 'user_logout' %}">Logout</a></li>
