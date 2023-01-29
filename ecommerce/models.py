@@ -9,12 +9,15 @@ class Category(models.Model):
         return self.category
 
 
+
+
 class Brand(models.Model):
     category=models.ForeignKey(Category,db_column='category',on_delete=models.CASCADE)
     brand=models.CharField(max_length=200)
 
     def __str__(self):
         return self.brand
+
 
 class Product(models.Model):
     title=models.CharField(max_length=200)
