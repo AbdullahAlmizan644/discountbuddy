@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{% static 'ecommerce/css/aos.css' %}">
 
     <link rel="stylesheet" href="{% static 'ecommerce/css/style.css' %}">
-   
+
 
     {% block head %}
 
@@ -59,7 +59,7 @@
                                     <li>
                                         <a href="{% url 'cart'%}" class="site-cart">
                                             <span class="icon icon-shopping_cart"></span>
-                                            <span class="count">2</span>
+                                            <span class="count" id="cartCounter">0</span>
                                         </a>
                                     </li>
                                     <li class="d-inline-block d-md-none ml-md-0"><a href="#"
@@ -80,13 +80,13 @@
                         <li class="has-children">
                             <a href="#">Category</a>
                             <ul class="dropdown">
-                            {% for category in categories %}
-                              <li><a href="{% url 'category' category.id %}">{{category}}</a></li>
-                            {% endfor %}
-                              <!-- <li><a href="#">Menu Two</a></li>
+                                {% for category in categories %}
+                                <li><a href="{% url 'category' category.id %}">{{category}}</a></li>
+                                {% endfor %}
+                                <!-- <li><a href="#">Menu Two</a></li>
                               <li><a href="#">Menu Three</a></li> -->
                             </ul>
-                          </li>
+                        </li>
                         <li><a href={% url "about" %}>About</a></li>
                         <li><a href={% url "contact" %}>Contact</a></li>
                         <li><a href="{% url 'admin:index' %}">Dashboard</a></li>
@@ -103,7 +103,7 @@
 
         {% for message in messages %}
         <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
-            <strong>{{ message }}</strong> 
+            <strong>{{ message }}</strong>
             <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
         </div>
         {% endfor %}
@@ -163,6 +163,7 @@
         </footer>
     </div>
 
+    
     <script src="{% static 'ecommerce/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'ecommerce/js/jquery-ui.js' %}"></script>
     <script src="{% static 'ecommerce/js/popper.min.js' %}"></script>
@@ -172,7 +173,18 @@
     <script src="{% static 'ecommerce/js/aos.js' %}"></script>
 
     <script src="{% static 'ecommerce/js/main.js' %}"></script>
+
+
     <!-- JavaScript Bundle with Popper -->
+
+
+
+
+
+
+
 </body>
+
+
 
 </html>

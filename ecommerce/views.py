@@ -5,7 +5,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 
 
+
+
 # Create your views here.
+
 
 def index(request):
     categories=Category.objects.all()
@@ -51,7 +54,7 @@ def contact(request):
 
 
 
-def shop(request):
+def shop(request, **kwargs):
     products=Product.objects.all()
     categories=Category.objects.all()
     return render(request,"ecommerce/shop.html",{

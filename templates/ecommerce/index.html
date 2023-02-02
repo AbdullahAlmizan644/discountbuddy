@@ -127,7 +127,7 @@
             
           </div>
         </div>
-        {% endfor %}
+        {% endfor %}  
 
       </div>
     </div>
@@ -246,5 +246,41 @@
 
 
 
+
+<script>
+    function addCart(cart) {
+    console.log(cart);
+    cart.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        nextPreOrder(index);
+
+      })
+    })
+  }
+
+  function restore() {
+    let restoreLocalValue = parseInt(localStorage.getItem('count'));
+    const cartCounter = document.getElementById("cartCounter");
+    if (restoreLocalValue) {
+      cartCounter.textContent = restoreLocalValue;
+    }
+
+  }
+
+
+
+
+  function manageOrder() {
+    const cart = document.querySelectorAll(".add-cart");
+    restore();
+    addCart(cart);
+
+  }
+
+
+  window.addEventListener("load", () => {
+    manageOrder();
+  });
+</script>
 
 {% endblock %}
