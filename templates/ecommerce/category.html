@@ -1,5 +1,45 @@
 {% extends "ecommerce/base.html" %}
 {% block title %} Category {% endblock %}
+{% load static %}
+
+{% block head %}
+
+
+
+<style>
+  .brands {
+    display: flex;
+    justify-content: center;
+  }
+
+  .brand-row {
+
+    width: 400px;
+    height: auto;
+    /* border: 2px solid red; */
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+  }
+
+  .c-3 {
+    height: 150px;
+    /* border: 1px solid green; */
+    text-align: center;
+
+  }
+
+
+  #brand-img {
+    width: 120px;
+    height: 80px;
+
+  }
+</style>
+
+{% endblock %}
 
 {% block body %}
 {% load static %}
@@ -23,9 +63,10 @@
         <div class="row">
           <div class="col-md-12 mb-5">
             <div class="float-md-left mb-4">
-              <h2 class="text-black h5">{{category.category}}</h2>
+              <h2 class="text-black h5"><span
+                  style="color: lightcoral; text-transform: uppercase;">{{category.category}}</span> all brands</h2>
             </div>
-            <div class="d-flex">
+            <!-- <div class="d-flex">
               <div class="dropdown mr-1 ml-md-auto">
                 <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,37 +78,77 @@
                   {% endfor %}
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
+
+        <div class="brands">
+          <div class="brand-row">
+            {% for b in brands %}
+            <div class="c-3">
+              <a href="{% url 'brand' b.id %}"><img id="brand-img" src="{{ b.brand_image.url }} " alt=""></a>
+              <a href="{% url 'brand' b.id %}">
+                <h4 style="color:black">{{b.brand}}</h4>
+              </a>
+            </div>
+            {% endfor %}
+
+            <!-- <div class="c-3">
+              <img id="brand-img" src="{% static 'ecommerce/images/mi.png' %} " alt="" >
+              <h4 style="color:black">Xiaomi</h4>
+            </div>
+
+            <div class="c-3">
+              <img id="brand-img" src="{% static 'ecommerce/images/mi.png' %} " alt="" >
+              <h4 style="color:black">Xiaomi</h4>
+            </div>
+
+            <div class="c-3">
+              <img id="brand-img" src="{% static 'ecommerce/images/mi.png' %} " alt="" >
+              <h4 style="color:black">Xiaomi</h4>
+            </div>
+
+            <div class="c-3">
+              <img id="brand-img" src="{% static 'ecommerce/images/mi.png' %} " alt="" >
+              <h4 style="color:black">Xiaomi</h4>
+            </div>
+
+            <div class="c-3">
+              <img id="brand-img" src="{% static 'ecommerce/images/mi.png' %} " alt="" >
+              <h4 style="color:black">Xiaomi</h4>
+            </div> -->
+          </div>
+        </div>
+
+
         <div class="row mb-5" id="shop">
 
           {% for product in category_product %}
-                    
-                    <span class="box">
-                        <input type="hidden" id="id-{{ forloop.counter0 }}" value="{{product.id}}">
-                        <input type="hidden" id="productName-{{ forloop.counter0 }}" value="{{product.title}}">
-                        <input type="hidden" id="price-{{ forloop.counter0 }}" value="{{product.discount_price}}">
-                        <input type="hidden" id="productImage-{{ forloop.counter0 }}" value="{{product.image}}">
-                      </span>
 
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                        <div class="block-4 text-center border">
-                            <figure class="block-4-image">
-                                <a href="product_details/{{product.id}}/{{product.title}}"><img src="{{ product.image.url }}"
-                                        alt="Image placeholder" class="img-fluid"></a>
-                            </figure>
-                            <div class="block-4-text p-4">
-                                <h3><a href="product_details/{{product.id}}/{{product.title}}">{{ product.title }}</a></h3>
-                                <p class="mb-0">{{ product.tagline }}</p>
-                                <p class="text-primary font-weight-bold"><s>৳ {{product.price}}</s></p>
-                                <p class="text-primary font-weight-bold">Discount {{product.discount}}%</p>
-                                <p class="text-primary font-weight-bold">৳ {{product.discount_price}}</p>
-                                <p><a class="buy-now btn btn-sm btn-primary add-cart" style="color: white;">Add To Cart</a></p>
-                            </div>
-                        </div>      
-                    </div>
-                    
+          <span class="box">
+            <input type="hidden" id="id-{{ forloop.counter0 }}" value="{{product.id}}">
+            <input type="hidden" id="productName-{{ forloop.counter0 }}" value="{{product.title}}">
+            <input type="hidden" id="price-{{ forloop.counter0 }}" value="{{product.discount_price}}">
+            <input type="hidden" id="productImage-{{ forloop.counter0 }}" value="{{product.image}}">
+          </span>
+
+          <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+            <div class="block-4 text-center border">
+              <figure class="block-4-image">
+                <a href="product_details/{{product.id}}/{{product.title}}"><img src="{{ product.image.url }}"
+                    alt="Image placeholder" class="img-fluid"></a>
+              </figure>
+              <div class="block-4-text p-4">
+                <h3><a href="product_details/{{product.id}}/{{product.title}}">{{ product.title }}</a></h3>
+                <p class="mb-0">{{ product.tagline }}</p>
+                <p class="text-primary font-weight-bold"><s>৳ {{product.price}}</s></p>
+                <p class="text-primary font-weight-bold">Discount {{product.discount}}%</p>
+                <p class="text-primary font-weight-bold">৳ {{product.discount_price}}</p>
+                <p><a class="buy-now btn btn-sm btn-primary add-cart" style="color: white;">Add To Cart</a></p>
+              </div>
+            </div>
+          </div>
+
           {% endfor %}
 
         </div>
@@ -92,14 +173,12 @@
         <div class="border p-4 rounded mb-4">
           <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
           <ul class="list-unstyled mb-0">
+              {% for category in categories %}
+              <li class="mb-1"><a href="{% url 'category' category.id %}" class="d-flex"><span>{{ category.category}}</span> </a></li>
 
-            {% for category in categories %}
-            <li class="mb-1"><a href="{% url 'category' category.id %}" class="d-flex"><span>{{ category.category}}</span> <span
-                  class="text-black ml-auto">(0)</span></a></li>
-            {% endfor %}
-
+              {% endfor %}
           </ul>
-        </div>
+      </div>
 
       </div>
     </div>
@@ -113,146 +192,146 @@
 <script>
 
 
-    let data = [];
-  
-  
-  
-    function Order(id, name, price, quantity, image) {
-      this.id = id;
-      this.name = name;
-      this.price = price;
-      this.quantity = quantity;
-      this.image = image;
-      this.total = this.price;
-    }
-  
-    function getValue(index) {
-      const list = [];
-      const id = document.getElementById(`id-${index}`).value;
-      const productName = document.getElementById(`productName-${index}`).value;
-      const price = document.getElementById(`price-${index}`).value;
-      console.log(price);
-      const productImage = document.getElementById(`productImage-${index}`).value;
-  
-      console.log(document.getElementById(`price-${index}`).value);
-  
-  
-      list.push(id, productName, parseInt(price), productImage);
-      return list;
-  
-    }
-  
-  
-    function save(obj) {
-  
-      // console.log("keno tumi run hocco na")
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].id === obj.id) {
-          data[i].quantity = data[i].quantity + 1;
-          data[i] = data[i];
-          data[i].total = data[i].price * data[i].quantity;
-          return;
-        }
-      };
-  
-      data.push(obj);
+  let data = [];
+
+
+
+  function Order(id, name, price, quantity, image) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+    this.image = image;
+    this.total = this.price;
+  }
+
+  function getValue(index) {
+    const list = [];
+    const id = document.getElementById(`id-${index}`).value;
+    const productName = document.getElementById(`productName-${index}`).value;
+    const price = document.getElementById(`price-${index}`).value;
+    console.log(price);
+    const productImage = document.getElementById(`productImage-${index}`).value;
+
+    console.log(document.getElementById(`price-${index}`).value);
+
+
+    list.push(id, productName, parseInt(price), productImage);
+    return list;
+
+  }
+
+
+  function save(obj) {
+
+    // console.log("keno tumi run hocco na")
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === obj.id) {
+        data[i].quantity = data[i].quantity + 1;
+        data[i] = data[i];
+        data[i].total = data[i].price * data[i].quantity;
+        return;
+      }
     };
-  
-    function orderProduct(index) {
-  
-      // const properties=getValue(index);
-      // const obj=new Order(index,properties[1],properties[2],1,properties[3]);
+
+    data.push(obj);
+  };
+
+  function orderProduct(index) {
+
+    // const properties=getValue(index);
+    // const obj=new Order(index,properties[1],properties[2],1,properties[3]);
+    // obj.totalCost();
+    // save(obj);
+    // localStorage.setItem('product',JSON.stringify(data));
+
+    const cartData = JSON.parse(localStorage.getItem('product'));
+    // let catchCount=parseInt(localStorage.getItem('count'));
+
+    if (cartData) {
+      data = cartData;
+      const properties = getValue(index);
+      const obj = new Order(index, properties[1], properties[2], 1, properties[3]);
       // obj.totalCost();
-      // save(obj);
-      // localStorage.setItem('product',JSON.stringify(data));
-  
-      const cartData = JSON.parse(localStorage.getItem('product'));
-      // let catchCount=parseInt(localStorage.getItem('count'));
-  
-      if (cartData) {
-        data = cartData;
-        const properties = getValue(index);
-        const obj = new Order(index, properties[1], properties[2], 1, properties[3]);
-        // obj.totalCost();
-        save(obj);
-        localStorage.setItem('product', JSON.stringify(data));
-  
-      } else {
-  
-        const properties = getValue(index);
-        const obj = new Order(index, properties[1], properties[2], 1, properties[3]);
-        // obj.totalCost();
-        save(obj);
-        localStorage.setItem('product', JSON.stringify(data));
-  
-      }
-  
-  
+      save(obj);
+      localStorage.setItem('product', JSON.stringify(data));
+
+    } else {
+
+      const properties = getValue(index);
+      const obj = new Order(index, properties[1], properties[2], 1, properties[3]);
+      // obj.totalCost();
+      save(obj);
+      localStorage.setItem('product', JSON.stringify(data));
+
     }
-  
-  
-    function costCalculation() {
-  
+
+
+  }
+
+
+  function costCalculation() {
+
+  }
+
+
+  function countOrder() {
+    const cartCounter = document.getElementById("cartCounter");
+    let catchCount = parseInt(localStorage.getItem('count'));
+
+    if (catchCount) {
+      catchCount++;
+      localStorage.setItem('count', catchCount);
+      cartCounter.textContent = catchCount;
+
+    } else {
+      localStorage.setItem('count', 1);
+      cartCounter.textContent = 1;
     }
-  
-  
-    function countOrder() {
-      const cartCounter = document.getElementById("cartCounter");
-      let catchCount = parseInt(localStorage.getItem('count'));
-  
-      if (catchCount) {
-        catchCount++;
-        localStorage.setItem('count', catchCount);
-        cartCounter.textContent = catchCount;
-  
-      } else {
-        localStorage.setItem('count', 1);
-        cartCounter.textContent = 1;
-      }
-  
-  
-    }
-  
-    function nextPreOrder(index) {
-      countOrder();
-      orderProduct(index);
-  
-    }
-  
-    function addCart(cart) {
-      console.log(cart);
-      cart.forEach((item, index) => {
-        item.addEventListener('click', () => {
-          nextPreOrder(index);
-  
-        })
+
+
+  }
+
+  function nextPreOrder(index) {
+    countOrder();
+    orderProduct(index);
+
+  }
+
+  function addCart(cart) {
+    console.log(cart);
+    cart.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        nextPreOrder(index);
+
       })
+    })
+  }
+
+  function restore() {
+    let restoreLocalValue = parseInt(localStorage.getItem('count'));
+    const cartCounter = document.getElementById("cartCounter");
+    if (restoreLocalValue) {
+      cartCounter.textContent = restoreLocalValue;
     }
-  
-    function restore() {
-      let restoreLocalValue = parseInt(localStorage.getItem('count'));
-      const cartCounter = document.getElementById("cartCounter");
-      if (restoreLocalValue) {
-        cartCounter.textContent = restoreLocalValue;
-      }
-  
-    }
-  
-  
-  
-  
-    function manageOrder() {
-      const cart = document.querySelectorAll(".add-cart");
-      restore();
-      addCart(cart);
-  
-    }
-  
-  
-    window.addEventListener("load", () => {
-      manageOrder();
-    });
-  
-  </script>
+
+  }
+
+
+
+
+  function manageOrder() {
+    const cart = document.querySelectorAll(".add-cart");
+    restore();
+    addCart(cart);
+
+  }
+
+
+  window.addEventListener("load", () => {
+    manageOrder();
+  });
+
+</script>
 
 {% endblock %}

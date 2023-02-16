@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .models import Contact,Product,Category,Brand
+from .models import Contact,Product,Category,Brand,Order
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
-
+import re
+import json
+from tabulate import tabulate
 
 
 
@@ -12,8 +14,10 @@ from django.contrib.auth import login,logout,authenticate
 
 def index(request):
     categories=Category.objects.all()
+    products=Product.objects.all()[3:8]
     return render(request,"ecommerce/index.html",{
         'categories':categories,
+        'products':products,
     })
 
 
@@ -22,12 +26,71 @@ def cart(request):
     return render(request,"ecommerce/cart.html")
 
 
+
 def checkout(request):
-    return render(request,"ecommerce/checkout.html")
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            first_name=request.POST.get("fname")
+            last_name=request.POST.get("lname")
+            address=request.POST.get("address")
+            state=request.POST.get("state")
+            zip=request.POST.get("zip")
+            email=request.POST.get("email")
+            phone=request.POST.get("phone")
+            notes=request.POST.get("notes")
+            total_price=request.POST.get("total")
+            all_product=request.POST.get("all")
+
+            print(all_product,total_price)
+
+            # pattern = r'"name":"(\w+)".*?"quantity":(\d+).*?"price":(\d+)'
+
+            # matches= re.findall(pattern, all_product)
+            # print(matches)
+
+            # product_list=[]
+
+            # for match in matches:
+            #     name = match[0]
+            #     quantity=int(match[1])
+            #     price =int(match[2])
+            #     product_list.append(f"Name: {name}, Quantity: {quantity}, Price: {price}")
+
+            # print(product_list)
+
+            data=json.loads(all_product)
+
+            product_list=[]
+
+            count=1
+            for d in data:
+                product_list.append([f"product{count} name:{d['name']}, product{count} quantity: {d['quantity']}, product{count} price:{d['price']}"])
+                count=count+1
+            
+           
+            product_list=tabulate(product_list,tablefmt="grid")
+            print(product_list)
+
+
+
+            order=Order(first_name=first_name,last_name=last_name,address=address,state=state,
+            zip=zip,email=email,phone=phone,notes=notes,total_price=total_price,product_list=product_list,username=request.user)
+            order.save()
+            messages.success(request,"Thanks for your orders")
+            return redirect(thankyou)
+        return render(request,"ecommerce/checkout.html")
+    else:
+        return redirect(user_login)
+
+
 
 
 def thankyou(request):
-    return render(request,"ecommerce/thankyou.html")
+    if request.user.is_authenticated:
+        return render(request,"ecommerce/thankyou.html")
+    else:
+        return redirect(user_login)
+
 
 def about(request):
     return render(request,"ecommerce/about.html")
@@ -66,9 +129,12 @@ def shop(request, **kwargs):
 
 def product_details(request,id,slug):
     product=Product.objects.filter(id=id,title=slug).first()
-    print(product.image)
+    print(product.category)
+    related_product=Product.objects.filter(category=product.category).all()
+    print(related_product)
     return render(request,"ecommerce/product_details.html",{
         "product":product,
+        "related_product":related_product,
     })
 
 
@@ -118,10 +184,12 @@ def user_login(request):
     return render(request, "ecommerce/login.html")
 
 
+
 def user_logout(request):
     logout(request)
     messages.success(request,"Logged out successfully.")
     return redirect("/")
+
 
 def signup(request):
     if request.method=="POST":
@@ -154,5 +222,8 @@ def signup(request):
             return redirect("login")
 
     return render(request, "ecommerce/signup.html")
+
+
+
 
 

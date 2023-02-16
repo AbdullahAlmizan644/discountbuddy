@@ -1,5 +1,8 @@
 {% extends "ecommerce/base.html" %}
+{% load static %}
 {% block title %} Shop {% endblock %}
+
+
 
 {% block body %}
 {% load static %}
@@ -98,8 +101,7 @@
                     <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
                     <ul class="list-unstyled mb-0">
                         {% for category in categories %}
-                        <li class="mb-1"><a href="{% url 'category' category.id %}" class="d-flex"><span>{{ category.category}}</span> <span
-                                    class="text-black ml-auto">(0)</span></a></li>
+                        <li class="mb-1"><a href="{% url 'category' category.id %}" class="d-flex"><span>{{ category.category}}</span> </a></li>
 
                         {% endfor %}
                     </ul>

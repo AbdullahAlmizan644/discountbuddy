@@ -26,15 +26,18 @@
 
     {% endblock %}
 
+
+
 </head>
+
 
 
 
 <body>
 
     <div class="site-wrap">
-        <header class="site-navbar" role="banner">
-            <div class="site-navbar-top">
+        <header class="site-navbar sticky-top" role="banner">
+            <div class="site-navbar-top ">
                 <div class="container">
                     <div class="row align-items-center">
 
@@ -54,8 +57,8 @@
                         <div class="col-6 col-md-4 order-3 order-md-3 text-right">
                             <div class="site-top-icons">
                                 <ul>
-                                    <li><a href="#"><span class="icon icon-person"></span></a></li>
-                                    <li><a href="#"><span class="icon icon-trash"></span></a></li>
+                                    <!-- <li><a href="#"><span class="icon icon-person"></span></a></li>
+                                    <li><a href="#"><span class="icon icon-trash"></span></a></li> -->
                                     <li>
                                         <a href="{% url 'cart'%}" class="site-cart">
                                             <span class="icon icon-shopping_cart"></span>
@@ -72,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <nav class="site-navigation text-right text-md-center" role="navigation">
+            <nav class="site-navigation text-right text-md-center static  " role="navigation">
                 <div class="container">
                     <ul class="site-menu js-clone-nav d-none d-md-block">
                         <li><a href={% url "index" %}>Home</a></li>
@@ -163,7 +166,7 @@
         </footer>
     </div>
 
-    
+
     <script src="{% static 'ecommerce/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'ecommerce/js/jquery-ui.js' %}"></script>
     <script src="{% static 'ecommerce/js/popper.min.js' %}"></script>
