@@ -6,6 +6,7 @@ from django.contrib.auth import login,logout,authenticate
 import re
 import json
 from tabulate import tabulate
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
@@ -119,7 +120,18 @@ def contact(request):
 
 def shop(request, **kwargs):
     products=Product.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(products, 9)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
     categories=Category.objects.all()
+    print(categories[1])
     return render(request,"ecommerce/shop.html",{
         "products":products,
         "categories":categories,
@@ -141,12 +153,23 @@ def product_details(request,id,slug):
 
 
 def category(request,id):
-    category_product=Product.objects.filter(category=id)
+    products=Product.objects.filter(category=id)
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(products, 9)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+
     categories=Category.objects.all()
     category=Category.objects.filter(id=id).first()
     brands=Brand.objects.filter(category=id)
     return render(request,"ecommerce/category.html",{
-        'category_product':category_product,
+        'products':products,
         'category':category,
         'categories':categories,
         'brands':brands,
@@ -155,11 +178,20 @@ def category(request,id):
 
 def brand(request,id):
     brand_details=Brand.objects.filter(id=id).first()
-    brand_product=Product.objects.filter(brand=id)
-    print(brand_product)
+    products=Product.objects.filter(brand=id)
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(products, 9)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
     categories=Category.objects.all()
+
     return render(request,"ecommerce/brand.html",{
-        "brand_product":brand_product,
+        "products":products,
         'categories':categories,
         'brand_details':brand_details,
     })
@@ -227,3 +259,25 @@ def signup(request):
 
 
 
+def search_result(request):
+    if request.method=="POST":
+        search=request.POST.get("search")
+        print(search)
+
+        if search!="":
+            products = Product.objects.filter(title__icontains=search).all()
+
+            if products:
+                print(products)
+                return render(request, "ecommerce/search_result.html",{
+                    "products":products,
+                    "search":search,
+                })
+            else:
+                messages.success(request,f"no match with result:{search}")
+                return redirect("/")
+
+        
+        else:
+            messages.success(request,"Please enter a product name")
+            return redirect("/")

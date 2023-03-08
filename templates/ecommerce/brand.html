@@ -10,7 +10,7 @@
 <div class="bg-light py-3">
   <div class="container">
     <div class="row">
-      <div class="col-md-12 mb-0"><a href="index.html">Shop Category</a> <span class="mx-2 mb-0">/</span> <strong
+      <div class="col-md-12 mb-0"><a href="{% url 'shop' %}">Shop Category</a> <span class="mx-2 mb-0">/</span> <strong
           class="text-black">{{brand_details.brand}}</strong></div>
     </div>
   </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="row mb-5" id="shop">
 
-          {% for product in brand_product %}
+          {% for product in products %}
           <span class="box">
             <input type="hidden" id="id-{{ forloop.counter0 }}" value="{{product.id}}">
             <input type="hidden" id="productName-{{ forloop.counter0 }}" value="{{product.title}}">
@@ -75,7 +75,28 @@
         <div class="row" data-aos="fade-up">
           <div class="col-md-12 text-center">
             <div class="site-block-27">
+              {% if products.has_other_pages %}
               <ul>
+                {% if products.has_previous %}
+                <li><a href="?page={{ products.previous_page_number }}">&lt;</a></li>
+                {% else %}
+                <li class="disabled"><span>&lt;</span></li>
+                {% endif %}
+                {% for i in products.paginator.page_range %}
+                {% if products.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if products.has_next %}
+                <li><a href="?page={{ products.next_page_number }}">&gt;</a></li>
+                {% else %}
+                <li class="disabled"><span>&gt;</span></li>
+                {% endif %}
+              </ul>
+              {% endif %}
+              <!-- <ul>
                 <li><a href="#">&lt;</a></li>
                 <li class="active"><span>1</span></li>
                 <li><a href="#">2</a></li>
@@ -83,13 +104,13 @@
                 <li><a href="#">4</a></li>
                 <li><a href="#">5</a></li>
                 <li><a href="#">&gt;</a></li>
-              </ul>
+              </ul> -->
             </div>
           </div>
         </div>
       </div>
 
-      <div class="col-md-3 order-1 mb-5 mb-md-0">
+      <!-- <div class="col-md-3 order-1 mb-5 mb-md-0">
         <div class="border p-4 rounded mb-4">
           <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
           <ul class="list-unstyled mb-0">
@@ -98,7 +119,7 @@
 
               {% endfor %}
           </ul>
-      </div>
+      </div> -->
 
       </div>
     </div>

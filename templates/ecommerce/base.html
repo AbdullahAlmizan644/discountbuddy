@@ -26,6 +26,20 @@
 
     {% endblock %}
 
+    <style>
+        /* The sticky class is added to the navbar with JS when it reaches its scroll position */
+        .custom-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+        .sticky+.content {
+            padding-top: 60px;
+        }
+    </style>
+
 
 
 </head>
@@ -36,15 +50,16 @@
 <body>
 
     <div class="site-wrap">
-        <header class="site-navbar sticky-top" role="banner">
+        <header class="site-navbar  custom-nav" id="navbar" role="banner">
             <div class="site-navbar-top ">
                 <div class="container">
                     <div class="row align-items-center">
 
                         <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-                            <form action="" class="site-block-top-search">
+                            <form action="{% url 'search' %}" class="site-block-top-search" method="post">
+                                {% csrf_token %}
                                 <span class="icon icon-search2"></span>
-                                <input type="text" class="form-control border-0" placeholder="Search">
+                                <input type="text" class="form-control border-0" name="search" placeholder="Search">
                             </form>
                         </div>
 
@@ -75,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <nav class="site-navigation text-right text-md-center static  " role="navigation">
+            <nav class="site-navigation text-right text-md-center" role="navigation">
                 <div class="container">
                     <ul class="site-menu js-clone-nav d-none d-md-block">
                         <li><a href={% url "index" %}>Home</a></li>
@@ -103,6 +118,10 @@
                 </div>
             </nav>
         </header>
+
+        <div style="margin:200px">
+
+        </div>
 
         {% for message in messages %}
         <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">

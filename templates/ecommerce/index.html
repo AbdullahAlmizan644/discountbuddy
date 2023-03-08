@@ -3,142 +3,53 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css"
-  href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/assets/owl.carousel.min.css" />
-<!-- bootstrap css -->
-<link rel="stylesheet" type="text/css" href="{% static 'land/css/bootstrap.min.css' %}">
-<!-- style css -->
-<link rel="stylesheet" type="text/css" href="{% static 'land/css/style.css'  %}">
-<!-- Responsive-->
-<link rel="stylesheet" href="{% static 'land/css/responsive.css' %}">
-<!-- fevicon -->
-<link rel="icon" href="{% static 'land/images/fevicon.png' %}" type="image/gif" />
-<!-- Scrollbar Custom CSS -->
-<link rel="stylesheet" href="{% static 'land/css/jquery.mCustomScrollbar.min.css' %}">
-<!-- Tweaks for older IEs-->
-<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<!-- owl stylesheets -->
-<link rel="stylesheet" href="{% static 'land/css/owl.carousel.min.css' %}">
-<!-- <link rel="stylesheet" href="{% static 'land/css/owl.theme.default.min.css' %}"> -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-  media="screen">
 
 <style>
-  .cat-1 img {
-    width: 50px;
-    height: 60px;
-    margin: 0 auto;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    text-align: center;
-    display: inline-block;
+  .cat {
+    display: flex;
+    justify-content: center;
   }
 
-  
-  
+  .cat-row {
+
+    width: 400px;
+    height: auto;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .c-3 {
+    width: 120px;
+    height: 150px;
+    /* border: 1px solid green; */
+    text-align: center;
+
+  }
+
+
+  #cat-img {
+    width: 100px;
+    height: 80px;
+
+  }
 </style>
+
 {% endblock %}
 
 {% block body %}
 
-<!--banner section start -->
-<div class="banner_section layout_padding" style="background-color: blue;">
-  <div id="my_slider" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="taital_main">
-                <h4 class="banner_taital"><span class="font_size_90">All</span> Discount product in one place</h4>
-                <p class="banner_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, atque?</p>
-                <div class="book_bt"><a href="#">Shop Now</a></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div><img src="{% static 'land/images/img-1.png' %} " class="image_1"></div>
-            </div>
-          </div>
-          <div class="button_main"><button class="all_text">All</button><input type="text" class="Enter_text"
-              placeholder="Enter keywords" name=""><button class="search_text">Search</button></div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="taital_main">
-                <h4 class="banner_taital"><span class="font_size_90">50%</span> Discount Online Shop</h4>
-                <p class="banner_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, atque?</p>
-                <div class="book_bt"><a href="#">Shop Now</a></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div><img src="{% static 'land/images/img-1.png'%} " class="image_1"></div>
-            </div>
-          </div>
-          <div class="button_main"><button class="all_text">All</button><input type="text" class="Enter_text"
-              placeholder="Enter keywords" name=""><button class="search_text">Search</button></div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="taital_main">
-                <h4 class="banner_taital"><span class="font_size_90">50%</span> Discount Online Shop</h4>
-                <p class="banner_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, atque?</p>
-                <div class="book_bt"><a href="#">Shop Now</a></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div><img src="{% static 'land/images/img-1.png' %}" class="image_1"></div>
-            </div>
-          </div>
-          <div class="button_main"><button class="all_text">All</button><input type="text" class="Enter_text"
-              placeholder="Enter keywords" name=""><button class="search_text">Search</button></div>
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-      <i class=""><img src="{% static 'land/images/left-icon.png'%}"></i>
-    </a>
-    <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-      <i class=""><img src="{% static 'land/images/right-icon.png'%} "></i>
-    </a>
-  </div>
-</div>
-<!--banner section end -->
 
-<!--category section start -->
-<div class="container">
-  <div class="category_section">
-    <div class="row">
-      <div class="col-lg-2 col-sm-12">
-        <h1 class="category_text">Category</h1>
-      </div>
-      <div class="col-lg-10 col-sm-12 main">
 
-        {% for category in categories%}
-        <div class="col">
-          <div class="box_main">
-            <div class="cat-1">
-              <a href={% url 'category' category.id %}><img src="{{ category.category_image }}" alt=""></a>
-            </div>
-            <a href={% url 'category' category.id %}><h4 class="fashion_text active">{{category.category}}</h4></a>
-            
-          </div>
-        </div>
-        {% endfor %}  
 
-      </div>
-    </div>
-  </div>
-</div>
-<!-- category section end -->
+
+
 
 <div class="site-section block-8">
   <div class="container">
+
     <div class="row justify-content-center  mb-5">
       <div class="col-md-7 site-section-heading text-center pt-4">
         <h2>Big Sale!</h2>
@@ -160,6 +71,33 @@
   </div>
 </div>
 
+<div class="container my-3">
+  <div class="row justify-content-center">
+    <div class="col-md-7 site-section-heading text-center pt-4">
+      <h2>Category</h2>
+    </div>
+  </div>
+
+</div>
+<div class="cat">
+  <div class="cat-row">
+    {% for category in categories%}
+    <div class="c-3">
+      <a href="{% url 'category' category.id %}"><img id="cat-img" src="{{ category.category_image.url }} " alt=""></a>
+      <a href="{% url 'category' category.id %}">
+        <h4 style="color:black">{{category.category}}</h4>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+<!-- category section end -->
+
+
+
 <div class="site-section block-3 site-blocks-2 bg-light">
   <div class="container">
     <div class="row justify-content-center">
@@ -168,7 +106,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 ">
         <div class="nonloop-block-3 owl-carousel">
 
           {% for product in products %}
@@ -191,8 +129,6 @@
           {% endfor %}
 
 
-
-
         </div>
       </div>
     </div>
@@ -203,7 +139,7 @@
 
 
 <script>
-    function addCart(cart) {
+  function addCart(cart) {
     console.log(cart);
     cart.forEach((item, index) => {
       item.addEventListener('click', () => {

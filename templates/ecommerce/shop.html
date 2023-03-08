@@ -16,17 +16,17 @@
       </div>
     </div> -->
 <div class="site-section">
-    <div class="container">
+  <div class="container">
 
-        <div class="row mb-5">
-            <div class="col-md-9 order-2">
+    <div class="row mb-5">
+      <div class="col-md-9 order-2">
 
-                <div class="row">
-                    <div class="col-md-12 mb-5">
-                        <div class="float-md-left mb-4">
-                            <h2 class="text-black h5">Discount Shop</h2>
-                        </div>
-                        <!-- <div class="d-flex">
+        <div class="row">
+          <div class="col-md-12 mb-5">
+            <div class="float-md-left mb-4">
+              <h2 class="text-black h5">Discount Shop</h2>
+            </div>
+            <!-- <div class="d-flex">
                             <div class="dropdown mr-1 ml-md-auto">
                                 <button type="button" class="btn btn-secondary btn-sm dropdown-toggle"
                                     id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true"
@@ -40,223 +40,243 @@
                                 </div>
                             </div>
                         </div> -->
-                    </div>
-                </div>
-                <div class="row mb-5" id="shop">
+          </div>
+        </div>
+        <div class="row mb-5" id="shop">
 
-                 
-                    {% for product in products %}
-                    
-                    <span class="box">
-                        <input type="hidden" id="id-{{ forloop.counter0 }}" value="{{product.id}}">
-                        <input type="hidden" id="productName-{{ forloop.counter0 }}" value="{{product.title}}">
-                        <input type="hidden" id="price-{{ forloop.counter0 }}" value="{{product.discount_price}}">
-                        <input type="hidden" id="productImage-{{ forloop.counter0 }}" value="{{product.image}}">
-                      </span>
 
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                        <div class="block-4 text-center border">
-                            <figure class="block-4-image">
-                                <a href="product_details/{{product.id}}/{{product.title}}"><img src="{{ product.image }}"
-                                        alt="Image placeholder" class="img-fluid"></a>
-                            </figure>
-                            <div class="block-4-text p-4">
-                                <h3><a href="product_details/{{product.id}}/{{product.title}}">{{ product.title }}</a></h3>
-                                <p class="mb-0">{{ product.tagline }}</p>
-                                <p class="text-primary font-weight-bold"><s>৳ {{product.price}}</s></p>
-                                <p class="text-primary font-weight-bold">Discount {{product.discount}}%</p>
-                                <p class="text-primary font-weight-bold">৳ {{product.discount_price}}</p>
-                                <p><a class="buy-now btn btn-sm btn-primary add-cart" style="color: white;">Add To Cart</a></p>
-                            </div>
-                        </div>      
-                    </div>
-                    
+          {% for product in products %}
 
- 
-                    {% endfor %}
-                    
+          <span class="box">
+            <input type="hidden" id="id-{{ forloop.counter0 }}" value="{{product.id}}">
+            <input type="hidden" id="productName-{{ forloop.counter0 }}" value="{{product.title}}">
+            <input type="hidden" id="price-{{ forloop.counter0 }}" value="{{product.discount_price}}">
+            <input type="hidden" id="productImage-{{ forloop.counter0 }}" value="{{product.image}}">
+          </span>
 
-                  
-
-                </div>
-                <div class="row" data-aos="fade-up">
-                    <div class="col-md-12 text-center">
-                        <div class="site-block-27">
-                            <ul>
-                                <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&gt;</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+          <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+            <div class="block-4 text-center border">
+              <figure class="block-4-image">
+                <a href="product_details/{{product.id}}/{{product.title}}"><img src="{{ product.image }}"
+                    alt="Image placeholder" class="img-fluid"></a>
+              </figure>
+              <div class="block-4-text p-4">
+                <h3><a href="product_details/{{product.id}}/{{product.title}}">{{ product.title }}</a></h3>
+                <p class="mb-0">{{ product.tagline }}</p>
+                <p class="text-primary font-weight-bold"><s>৳ {{product.price}}</s></p>
+                <p class="text-primary font-weight-bold">Discount {{product.discount}}%</p>
+                <p class="text-primary font-weight-bold">৳ {{product.discount_price}}</p>
+                <p><a class="buy-now btn btn-sm btn-primary add-cart" style="color: white;">Add To Cart</a></p>
+              </div>
             </div>
+          </div>
 
-            <div class="col-md-3 order-1 mb-5 mb-md-0">
-                <div class="border p-4 rounded mb-4">
-                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
-                    <ul class="list-unstyled mb-0">
-                        {% for category in categories %}
-                        <li class="mb-1"><a href="{% url 'category' category.id %}" class="d-flex"><span>{{ category.category}}</span> </a></li>
 
-                        {% endfor %}
-                    </ul>
-                </div>
 
+          {% endfor %}
+
+
+
+
+        </div>
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-12 text-center">
+            <div class="site-block-27">
+              {% if products.has_other_pages %}
+              <ul>
+                {% if products.has_previous %}
+                <li><a href="?page={{ products.previous_page_number }}">&lt;</a></li>
+                {% else %}
+                <li class="disabled"><span>&lt;</span></li>
+                {% endif %}
+                {% for i in products.paginator.page_range %}
+                {% if products.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if products.has_next %}
+                <li><a href="?page={{ products.next_page_number }}">&gt;</a></li>
+                {% else %}
+                <li class="disabled"><span>&gt;</span></li>
+                {% endif %}
+              </ul>
+              {% endif %}
+              <!-- <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul> -->
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 order-1 mb-5 mb-md-0">
+        <div class="border p-4 rounded mb-4">
+          <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+          <ul class="list-unstyled mb-0">
+            {% for c in categories %}
+            <a href="{% url 'category' c.id %}"><li class="mb-1">{{c}}</li></a>
+            {% endfor %}
+          </ul>
         </div>
 
-
+      </div>
     </div>
+
+
+  </div>
 </div>
 
 <script>
 
 
-    let data = [];
-  
-  
-  
-    function Order(id, name, price, quantity, image) {
-      this.id = id;
-      this.name = name;
-      this.price = price;
-      this.quantity = quantity;
-      this.image = image;
-      this.total = this.price;
-    }
-  
-    function getValue(index) {
-      const list = [];
-      const id = document.getElementById(`id-${index}`).value;
-      const productName = document.getElementById(`productName-${index}`).value;
-      const price = document.getElementById(`price-${index}`).value;
-      console.log(price);
-      const productImage = document.getElementById(`productImage-${index}`).value;
-  
-      console.log(document.getElementById(`price-${index}`).value);
-  
-  
-      list.push(id, productName, parseInt(price), productImage);
-      return list;
-  
-    }
-  
-  
-    function save(obj) {
-  
-      // console.log("keno tumi run hocco na")
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].id === obj.id) {
-          data[i].quantity = data[i].quantity + 1;
-          data[i] = data[i];
-          data[i].total = data[i].price * data[i].quantity;
-          return;
-        }
-      };
-  
-      data.push(obj);
+  let data = [];
+
+
+
+  function Order(id, name, price, quantity, image) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+    this.image = image;
+    this.total = this.price;
+  }
+
+  function getValue(index) {
+    const list = [];
+    const id = document.getElementById(`id-${index}`).value;
+    const productName = document.getElementById(`productName-${index}`).value;
+    const price = document.getElementById(`price-${index}`).value;
+    console.log(price);
+    const productImage = document.getElementById(`productImage-${index}`).value;
+
+    console.log(document.getElementById(`price-${index}`).value);
+
+
+    list.push(id, productName, parseInt(price), productImage);
+    return list;
+
+  }
+
+
+  function save(obj) {
+
+    // console.log("keno tumi run hocco na")
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === obj.id) {
+        data[i].quantity = data[i].quantity + 1;
+        data[i] = data[i];
+        data[i].total = data[i].price * data[i].quantity;
+        return;
+      }
     };
-  
-    function orderProduct(index) {
-  
-      // const properties=getValue(index);
-      // const obj=new Order(index,properties[1],properties[2],1,properties[3]);
+
+    data.push(obj);
+  };
+
+  function orderProduct(index) {
+
+    // const properties=getValue(index);
+    // const obj=new Order(index,properties[1],properties[2],1,properties[3]);
+    // obj.totalCost();
+    // save(obj);
+    // localStorage.setItem('product',JSON.stringify(data));
+
+    const cartData = JSON.parse(localStorage.getItem('product'));
+    // let catchCount=parseInt(localStorage.getItem('count'));
+
+    if (cartData) {
+      data = cartData;
+      const properties = getValue(index);
+      const obj = new Order(index, properties[1], properties[2], 1, properties[3]);
       // obj.totalCost();
-      // save(obj);
-      // localStorage.setItem('product',JSON.stringify(data));
-  
-      const cartData = JSON.parse(localStorage.getItem('product'));
-      // let catchCount=parseInt(localStorage.getItem('count'));
-  
-      if (cartData) {
-        data = cartData;
-        const properties = getValue(index);
-        const obj = new Order(index, properties[1], properties[2], 1, properties[3]);
-        // obj.totalCost();
-        save(obj);
-        localStorage.setItem('product', JSON.stringify(data));
-  
-      } else {
-  
-        const properties = getValue(index);
-        const obj = new Order(index, properties[1], properties[2], 1, properties[3]);
-        // obj.totalCost();
-        save(obj);
-        localStorage.setItem('product', JSON.stringify(data));
-  
-      }
-  
-  
+      save(obj);
+      localStorage.setItem('product', JSON.stringify(data));
+
+    } else {
+
+      const properties = getValue(index);
+      const obj = new Order(index, properties[1], properties[2], 1, properties[3]);
+      // obj.totalCost();
+      save(obj);
+      localStorage.setItem('product', JSON.stringify(data));
+
     }
-  
-  
-    function costCalculation() {
-  
+
+
+  }
+
+
+  function costCalculation() {
+
+  }
+
+
+  function countOrder() {
+    const cartCounter = document.getElementById("cartCounter");
+    let catchCount = parseInt(localStorage.getItem('count'));
+
+    if (catchCount) {
+      catchCount++;
+      localStorage.setItem('count', catchCount);
+      cartCounter.textContent = catchCount;
+
+    } else {
+      localStorage.setItem('count', 1);
+      cartCounter.textContent = 1;
     }
-  
-  
-    function countOrder() {
-      const cartCounter = document.getElementById("cartCounter");
-      let catchCount = parseInt(localStorage.getItem('count'));
-  
-      if (catchCount) {
-        catchCount++;
-        localStorage.setItem('count', catchCount);
-        cartCounter.textContent = catchCount;
-  
-      } else {
-        localStorage.setItem('count', 1);
-        cartCounter.textContent = 1;
-      }
-  
-  
-    }
-  
-    function nextPreOrder(index) {
-      countOrder();
-      orderProduct(index);
-  
-    }
-  
-    function addCart(cart) {
-      console.log(cart);
-      cart.forEach((item, index) => {
-        item.addEventListener('click', () => {
-          nextPreOrder(index);
-  
-        })
+
+
+  }
+
+  function nextPreOrder(index) {
+    countOrder();
+    orderProduct(index);
+
+  }
+
+  function addCart(cart) {
+    console.log(cart);
+    cart.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        nextPreOrder(index);
+
       })
+    })
+  }
+
+  function restore() {
+    let restoreLocalValue = parseInt(localStorage.getItem('count'));
+    const cartCounter = document.getElementById("cartCounter");
+    if (restoreLocalValue) {
+      cartCounter.textContent = restoreLocalValue;
     }
-  
-    function restore() {
-      let restoreLocalValue = parseInt(localStorage.getItem('count'));
-      const cartCounter = document.getElementById("cartCounter");
-      if (restoreLocalValue) {
-        cartCounter.textContent = restoreLocalValue;
-      }
-  
-    }
-  
-  
-  
-  
-    function manageOrder() {
-      const cart = document.querySelectorAll(".add-cart");
-      restore();
-      addCart(cart);
-  
-    }
-  
-  
-    window.addEventListener("load", () => {
-      manageOrder();
-    });
-  
-  </script>
+
+  }
+
+
+
+
+  function manageOrder() {
+    const cart = document.querySelectorAll(".add-cart");
+    restore();
+    addCart(cart);
+
+  }
+
+
+  window.addEventListener("load", () => {
+    manageOrder();
+  });
+
+</script>
 
 {% endblock %}
