@@ -1,0 +1,67 @@
+{% extends "ecommerce/base.html" %}
+{% block title %} order History {% endblock %}
+
+{% block body %}
+{% load static %}
+
+
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong
+                    class="text-black">Order History</strong></div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            <form class="col-md-12" method="post">
+                <div class="site-blocks-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">State</th>
+                                <th scope="col">Zip</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Notes</th>
+                                <th scope="col">Product Details</th>
+                                <th scope="col">Total price</th>
+                                <th scope="col">Order datetime</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in order_list %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ order.first_name }}</td>
+                                <td>{{ order.last_name }}</td>
+                                <td>{{ order.address }}</td>
+                                <td>{{ order.state }}</td>
+                                <td>{{ order.zip }}</td>
+                                <td>{{ order.email }}</td>
+                                <td>{{ order.phone }}</td>
+                                <td>{{ order.notes }}</td>
+                                <td>{{ order.product_list }}</td>
+                                <td>{{ order.total_price }}</td>
+                                <td>{{ order.timestamp }}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

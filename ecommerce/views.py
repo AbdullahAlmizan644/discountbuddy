@@ -7,7 +7,8 @@ import re
 import json
 from tabulate import tabulate
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 
 # Create your views here.
@@ -44,21 +45,6 @@ def checkout(request):
 
             print(all_product,total_price)
 
-            # pattern = r'"name":"(\w+)".*?"quantity":(\d+).*?"price":(\d+)'
-
-            # matches= re.findall(pattern, all_product)
-            # print(matches)
-
-            # product_list=[]
-
-            # for match in matches:
-            #     name = match[0]
-            #     quantity=int(match[1])
-            #     price =int(match[2])
-            #     product_list.append(f"Name: {name}, Quantity: {quantity}, Price: {price}")
-
-            # print(product_list)
-
             data=json.loads(all_product)
 
             product_list=[]
@@ -84,6 +70,15 @@ def checkout(request):
         return redirect(user_login)
 
 
+def order_history(request):
+    if request.user.is_authenticated:
+        order_list=Order.objects.filter(username=request.user).all()
+        print(order_list)
+        return render(request,"ecommerce/order_history.html",{
+            "order_list":order_list
+        })
+    else:
+        return redirect(user_login)
 
 
 def thankyou(request):
