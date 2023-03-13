@@ -85,7 +85,7 @@
     <div class="c-3">
       <a href="{% url 'category' category.id %}"><img id="cat-img" src="{{ category.category_image.url }} " alt=""></a>
       <a href="{% url 'category' category.id %}">
-        <h4 style="color:black">{{category.category}}</h4>
+        <h6 style="color:black">{{category.category}}</h6>
       </a>
     </div>
     {% endfor %}
